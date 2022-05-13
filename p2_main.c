@@ -21,8 +21,10 @@ osThreadId_t animateID;
 
 int main()
 {
+	//set up the main actors in the game
 	initializeActors();
 
+	//call this function to ensure that all of the internal settings of the LPC are correct
 	SystemInit();
 	
 	/*
@@ -63,7 +65,7 @@ int main()
 
 	//launch the kernel, which simultaneously starts all threads we have created
 	osKernelStart();
-	while(1){};
 	
-
+	//Theoretically we will only ever entire this loop if something goes wrong in the kernel
+	while(1){};
 }

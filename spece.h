@@ -17,11 +17,16 @@
 
 //speeds
 #define LASER_SPEED SPRITE_ROWS*SPRITE_SCALE
+#define ENEMY_LASER_SPEED SPRITE_ROWS*SPRITE_SCALE + 5
+#define PLAYER_SPEED 10
+#define ENEMY_SPEED 9
 
 //randomly selecting when the enemy can shoot
 #define ENEMY_SHOT_CHANCE 25000
 
-
+//useful constants
+#define PLAYER_LASER 0
+#define ENEMY_LASER 1
 
 typedef struct actor_struct{
 	int verticalPosition;
@@ -41,16 +46,22 @@ void printSpriteAt(int x, int y,char* spriteBMP);
 */
 void drawBigPixelAt(int x, int y, int scale);
 
+/*
+	Enemy movement logic is a bit complicated, so it is done in two functions. updateEnemyPosition
+	moves the enemy and changes its direction if it hits a wall, printEnemy clears the sprite and re-draws it
+	in the new position
+*/
 //updates x and y position of the enemy
 void updateEnemyPosition(actor* act);
 
 //prints an enemy
 void printEnemy(actor* enemy);
 
-//prints the player
+
+//prints the player - the logic for this is a bit easier, so it's done in one function
 void printPlayer(actor* play);
 
-//prints laser beams...pew pew
+//prints laser beams...pew pew. The logic here is simpler than the enemy logic but lasers move vertically
 void printLaser(actor* beam);
 
 //determines if any part of act1 overlaps with act2
